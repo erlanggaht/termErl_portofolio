@@ -1,27 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply overflow-hidden bg-body !font-SC text-lg text-white;
+}
+
+[role="TerminalContent"] {
+  @apply pt-7;
+}
+
+[role="TerminalContent"]:first-child {
+  @apply pt-0;
+}
+
+[role="TerminalContent"] > .text-command {
+  @apply font-thin;
+}
+
+[role="resultCommand"] > p {
+  line-height: 1.5rem;
+}
+
+[role="folderRoute"] {
+  @apply text-folder;
+}
+
+[role="fileRoute"] {
+  @apply font-thin text-file;
 }
