@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import MainLayout from "./components/MainLayout";
 import WrapperContextClient from "./utility/GlobalContext/MyContext";
+import HeadTitle from "./utility/HeadTitle/HeadTitle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,8 @@ export default function RootLayout({
           rel="icon"
           href="https://erlanggaht93.vercel.app/assets/ghost-halloween-horror-svgrepo-com-74d2419c.svg"
         />
-        <title>TermErl</title>
-      </head>
+        <HeadTitle/>
+        </head>
       <WrapperContextClient>
         <body className={inter.className}>
           <MainLayout>{children}</MainLayout>

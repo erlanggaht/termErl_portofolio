@@ -1,22 +1,15 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
-import Command from "./components/Command/Command";
-import Terminal from "./components/Terminal/Terminal";
-import UserTerm from "./components/UserTerm/UserTerm";
-import { MyContext } from "./utility/GlobalContext/MyContext";
+import { useContext } from "react";
+import Command from "@/app/components/Command/Command";
+import Terminal from "@/app//components/Terminal/Terminal";
+import UserTerm from "@/app/components/UserTerm/UserTerm";
+import { MyContext } from "@/app//utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
-import { RoleCatFile, RoleRouteRoot } from "./utility/roleCommand/roleCommands";
-import LoadingPage from "./components/loadingPage/LoadingPage";
+import { RoleCatFile, RoleRouteRoot } from "@/app/utility/roleCommand/roleCommands";
 
 export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
-  const [loadingPage,setLoadingPage] = useState(false)
-
-  useEffect(() => {
-    setLoadingPage(true)
-    // setTimeout(() => setLoadingPage(false),1200)
-  },[])
 
 
   const conditionCommand = (index: number) => {
@@ -74,10 +67,6 @@ export default function Home() {
     }
   };
 
-  if(loadingPage) {
-    return  <div className="fixed w-screen h-screen flex justify-center items-center"><LoadingPage/></div>
-  }
-   
   return (
     <div>
       <Terminal>
@@ -86,13 +75,8 @@ export default function Home() {
             <Command
               contextCommand={{ totalCommand, setTotalCommand }}
               active={false}
-              loadingPage={false}
+              driverActive={false}
             />
-            {/* <div role="resultCommand">
-                <p role="folderRoute">Document</p>
-                <p role="folderRoute">Project</p>
-                <p role="fileRoute">About</p>
-              </div> */}
           </UserTerm>
         ) : (
           totalCommand?.map((m, i) => {
@@ -101,6 +85,7 @@ export default function Home() {
                 <Command
                   contextCommand={{ totalCommand, setTotalCommand }}
                   active={i === totalCommand.length - 1 ? false : true}
+                  driverActive={false}
                 >
                   {conditionCommand(i)}
                 </Command>

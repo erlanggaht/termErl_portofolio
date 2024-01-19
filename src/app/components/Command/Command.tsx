@@ -9,7 +9,8 @@ function Command({
   active = false,
   contextCommand,
   children,
-  driverActive = true
+  driverActive = true,
+  loadingPage = false
 }: {
   valueInput?: string | number;
   active?: boolean;
@@ -104,7 +105,7 @@ const InputCommand = ({
       onChange={onChange}
       onKeyDown={onKeydown}
       disabled={disabled}
-      className="bg-transparent px-2  font-thin focus:border-0 focus:outline-none"
+      className="bg-transparent px-1 font-thin focus:border-0 focus:outline-none w-[80%]"
       autoFocus
     />
   );
