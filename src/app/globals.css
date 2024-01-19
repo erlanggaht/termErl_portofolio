@@ -8,7 +8,7 @@ body {
 }
 
 [role="TerminalContent"] {
-  @apply pt-7;
+  @apply pt-0;
 }
 
 [role="TerminalContent"]:first-child {
@@ -20,7 +20,7 @@ body {
 }
 
 [role="resultCommand"] > p {
-  line-height: 1.5rem;
+  line-height: 1.5rem;  
 }
 
 [role="folderRoute"] {
@@ -29,4 +29,8 @@ body {
 
 [role="fileRoute"] {
   @apply font-thin text-file;
+}
+
+#driver-popover-content {
+  inset:auto auto 50% 70px !important;
 }

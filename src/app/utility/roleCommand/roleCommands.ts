@@ -37,6 +37,11 @@ export const RoleRouteRoot: InterfaceRoleRouteRoot[] = [
     command: "cd ~",
     link: "/home",
   },
+  {
+    id: 4,
+    command: "cd document",
+    link: "/document",
+  },
 ];
 
 // Role cat file

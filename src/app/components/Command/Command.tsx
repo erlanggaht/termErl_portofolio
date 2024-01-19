@@ -1,34 +1,70 @@
-import React, { useState } from "react";
-import { TypeValue } from "@/app/utility/GlobalContext/MyContext";
+import React, { useContext, useEffect, useState } from "react";
+import { MyContext, TypeValue } from "@/app/utility/GlobalContext/MyContext";
 import validator from "validator";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import useFirstNextClick from "@/app/utility/hooks/driverjs/useFirstOnNextClick";
 
 function Command({
-  valueInput,
   active = false,
   contextCommand,
   children,
+  driverActive = true
 }: {
   valueInput?: string | number;
   active?: boolean;
   contextCommand?: TypeValue;
   children?: React.ReactNode;
+  driverActive?: boolean;
 }) {
   const [input, setInput] = useState<string | number>();
+  const { nextStep, setNextStep } = useContext(MyContext);
+
+  const driverObj = driver({
+    animate: true,
+    showProgress: true,
+    showButtons: ['next', 'close'],
+    doneBtnText: 'Finish',
+    steps: [
+      { element: 'body', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
+        setNextStep?.(prev => prev + 1);
+      }} },
+      { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
+        useFirstNextClick(setNextStep,setInput,"ls",contextCommand)
+      }}},
+      { element: '#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about" first.', side: "bottom", align: 'start',onNextClick: () => {
+        useFirstNextClick(setNextStep,setInput,"cat about",contextCommand)
+      }}},
+    ]
+  });
+  
+  useEffect(() => {
+    if(driverActive) driverObj.drive(nextStep)
+  }, [nextStep])
 
   const HandleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Event Keyboard Enter
-    if (e.key === "Enter" && input) {
+    if (e.code === "Enter" && input) {
+      setTimeout(() => {
+        console.log(nextStep)
+        setNextStep?.(prev => prev + 1);
+      },0)
       // @ts-ignore
-      contextCommand.setTotalCommand((prev) => [
-        ...prev,
-        validator.trim(input?.toString().toLocaleLowerCase()),
-      ]);
+      contextCommand.setTotalCommand((prev) => {
+        return [
+          ...prev,
+          validator.trim(input?.toString().toLocaleLowerCase()),
+        ]
+      });
     }
+
+  
   };
 
+  
   return (
     <>
-      {active ? (
+      {active  ? (
         <InputCommand
           value={input}
           onKeydown={HandleEnter}
@@ -43,7 +79,7 @@ function Command({
           disabled={active}
         />
       )}
-
+      
       {children}
     </>
   );

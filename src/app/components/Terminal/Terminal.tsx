@@ -1,29 +1,7 @@
-import React, { useEffect } from "react";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
+import React from "react";
+
 
 function Terminal({ children }: { children: React.ReactNode }) {
-
-  useEffect(() => {
-    const driverObj = driver({
-      animate: true,
-      showProgress: true,
-      showButtons: ['next', 'previous', 'close'],
-      steps: [
-        { element: '#Terminal', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'start' } },
-        { element: '#TerminalContent', popover: { title: 'CLI', description: 'You need to type "cat about" first.', side: "bottom", align: 'start' } },
-        { element: '#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about" first.', side: "bottom", align: 'start' } },
-      ]
-    });
-    driverObj.drive();
-    // driverObj.highlight({
-    //   element: "#Terminal",
-    //   popover: {
-    //     title: "Title",
-    //     description: "DescriptionasasasasaSADASDASFF"
-    //   }
-    // });
-  }, [])
 
   return (
     <div

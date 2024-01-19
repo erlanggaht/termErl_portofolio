@@ -11,11 +11,13 @@ export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
 
+
   const conditionCommand = (index: number) => {
     const lastIndexText = totalCommand?.[index + 1]
-
+    
     // find cdRoute
     const cdRoute = RoleRouteRoot.find((root) => root.command == lastIndexText);
+    
 
     // find catFile
     const catFile = RoleCatFile.find((file) => file.command == lastIndexText)
