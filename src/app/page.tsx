@@ -6,18 +6,10 @@ import UserTerm from "./components/UserTerm/UserTerm";
 import { MyContext } from "./utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRouteRoot } from "./utility/roleCommand/roleCommands";
-import LoadingPage from "./components/loadingPage/LoadingPage";
 
 export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
-  const [loadingPage,setLoadingPage] = useState(false)
-
-  useEffect(() => {
-    setLoadingPage(true)
-    // setTimeout(() => setLoadingPage(false),1200)
-  },[])
-
 
   const conditionCommand = (index: number) => {
     const lastIndexText = totalCommand?.[index + 1]
@@ -25,9 +17,9 @@ export default function Home() {
     // find cdRoute
     const cdRoute = RoleRouteRoot.find((root) => root.command == lastIndexText);
     
-
     // find catFile
     const catFile = RoleCatFile.find((file) => file.command == lastIndexText)
+
 
     if (index !== totalCommand!.length - 1) {
       switch (lastIndexText) {
@@ -40,6 +32,10 @@ export default function Home() {
               <p role="folderRoute">project</p>
             </div>
           );
+        case "cd .." : 
+          setTotalCommand?.(["default"]);
+          router.replace('/')
+        break;
         case cdRoute?.command:
           if (cdRoute?.link) {
             setTotalCommand?.(["default"]);
@@ -74,9 +70,9 @@ export default function Home() {
     }
   };
 
-  if(loadingPage) {
-    return  <div className="fixed w-screen h-screen flex justify-center items-center"><LoadingPage/></div>
-  }
+  // if(loadingPage) {
+  //   return  <div className="fixed w-screen h-screen flex justify-center items-center"><LoadingPage/></div>
+  // }
    
   return (
     <div>
@@ -86,7 +82,6 @@ export default function Home() {
             <Command
               contextCommand={{ totalCommand, setTotalCommand }}
               active={false}
-              loadingPage={false}
             />
             {/* <div role="resultCommand">
                 <p role="folderRoute">Document</p>

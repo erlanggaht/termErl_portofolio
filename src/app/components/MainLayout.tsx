@@ -9,15 +9,30 @@ export default function MainLayout({
 
   // hover opacity effect
   React.useEffect(() => {
-    if(typeof window !== 'undefined') {
-      document?.querySelector('body')?.addEventListener('mouseover',(e) => {
-         document!!.getElementById('Terminal')!.style.opacity = '1';
-         document!!.querySelector('body')?.addEventListener('mouseout',(e) => {
-           document!!.getElementById('Terminal')!.style.opacity = '0.8';
-         })
-  
-      })
+    const body = document?.querySelector("body")
+    const terminal = document?.getElementById('terminal')
+
+    if(body && terminal) {
+      const handleMouseOver = () => {
+        terminal.style.opacity = '1';
+      };
+
+      const handleMouseOut = () => {
+        terminal.style.opacity = '0.8';
+      }
+
+      body.addEventListener("mouseover",handleMouseOver)
+      body.addEventListener("mouseout",handleMouseOut)
+        
+      return () => {
+        body.removeEventListener('mouseover',handleMouseOver)
+        body.removeEventListener('mouseover',handleMouseOut)
+
+      }
+
     }
+         
+      
   }, [])
 
   return (

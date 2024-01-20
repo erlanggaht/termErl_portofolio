@@ -10,7 +10,6 @@ function Command({
   contextCommand,
   children,
   driverActive = true,
-  loadingPage = false
 }: {
   valueInput?: string | number;
   active?: boolean;
@@ -47,7 +46,6 @@ function Command({
     // Event Keyboard Enter
     if (e.code === "Enter" && input) {
       setTimeout(() => {
-        console.log(nextStep)
         setNextStep?.(prev => prev + 1);
       },0)
       // @ts-ignore
