@@ -4,6 +4,7 @@ import "./globals.css";
 import MainLayout from "./components/MainLayout";
 import WrapperContextClient from "./utility/GlobalContext/MyContext";
 import HeadTitle from "./utility/HeadTitle/HeadTitle";
+import LoadingPage from "./components/loadingPage/LoadingPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <HeadTitle/>
         </head>
       <WrapperContextClient>
+        <LoadingPage/>
         <body className={inter.className}>
           <MainLayout>{children}</MainLayout>
         </body>
