@@ -5,23 +5,23 @@ import Terminal from "@/app//components/Terminal/Terminal";
 import UserTerm from "@/app/components/UserTerm/UserTerm";
 import { MyContext } from "@/app//utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
-import { RoleCatFile, RoleRouteRoot } from "@/app/utility/roleCommand/roleCommands";
+import { RoleCatFile, RoleRoute } from "@/app/utility/roleCommand/roleCommands";
 
 export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
 
   const conditionCommand = (index: number) => {
-    const lastIndexText = totalCommand?.[index + 1]
+    const lastIndexTextInput = totalCommand?.[index + 1]
     
     // find cdRoute
-    const cdRoute = RoleRouteRoot.find((root) => root.command == lastIndexText);
+    const cdRoute = RoleRoute.find((root) => root.command == lastIndexTextInput);
     
     // find catFile
-    const catFile = RoleCatFile.find((file) => file.command == lastIndexText)
+    const catFile = RoleCatFile.find((file) => file.command == lastIndexTextInput)
 
     if (index !== totalCommand!.length - 1) {
-      switch (lastIndexText) {
+      switch (lastIndexTextInput) {
         case "ls":
           return (
             <div role="resultCommand">
@@ -42,7 +42,7 @@ export default function Home() {
         default:
           return (
             <p className="font-thin">
-              {lastIndexText}: command not found
+              {lastIndexTextInput}: command not found
             </p>
           );
       }

@@ -1,11 +1,12 @@
 export type TypeRoleCommands = {
   command?: string;
+  link?: string;
+  description?:string
 };
 
-export interface InterfaceRoleRouteRoot extends TypeRoleCommands {
-  link?: string;
-}
+export interface InterfaceRoleRoute extends TypeRoleCommands {}
 export interface InterfaceRoleCatFile extends TypeRoleCommands {}
+export interface InterfaceRoleOther extends TypeRoleCommands{}
 
 // Role Command
 export const RoleCommand: TypeRoleCommands[] = [
@@ -16,15 +17,15 @@ export const RoleCommand: TypeRoleCommands[] = [
     command: "cd",
   },
   {
-    command: "cat"
-  }
+    command: "cat",
+  },
 ];
 
 // Role cd Route
-export const RoleRouteRoot: InterfaceRoleRouteRoot[] = [
+export const RoleRoute: InterfaceRoleRoute[] = [
   {
-    command: 'cd ..',
-    link: ""
+    command: "cd ..",
+    link: "",
   },
   {
     command: "cd home",
@@ -52,5 +53,18 @@ export const RoleCatFile: InterfaceRoleCatFile[] = [
   },
   {
     command: "cat learn_app",
+  },
+];
+
+// Role Other
+
+export const RoleOther: InterfaceRoleOther[]  = [
+  {
+    command: "ls",
+    description: "view all directory listings",
+  },
+  {
+    command: "clear",
+    description: "view all directory listings",
   },
 ];

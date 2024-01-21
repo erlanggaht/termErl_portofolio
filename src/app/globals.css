@@ -19,6 +19,10 @@ body {
   @apply font-thin;
 }
 
+[role="resultCommand"] {
+  padding-bottom:12px
+} 
+
 [role="resultCommand"] > p {
   line-height: 1.5rem;  
 }
