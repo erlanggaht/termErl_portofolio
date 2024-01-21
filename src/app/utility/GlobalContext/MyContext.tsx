@@ -7,18 +7,18 @@ export type TypeValue = {
   setTotalCommand?: Dispatch<SetStateAction<string[]>>,
   nextStep?: number,
   setNextStep?: Dispatch<SetStateAction<number>>,
-  visit?: any
+  visit?: any,
+  historyInput?: string | number,
+  setHistoryInput?:  Dispatch<SetStateAction<number | string>>
 };
 
 // Create Context
-export const MyContext = createContext<TypeValue>({
-  totalCommand: [],
-  setTotalCommand: () => "",
-});
+export const MyContext = createContext<TypeValue>({});
 
 export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
   const [totalCommand, setTotalCommand] = useState<string[]>(["default"]);
   const [nextStep,setNextStep] = useState<number>(0)
+  const [historyInput,setHistoryInput] = useState<number | string>('')
   
   // verification visit one time
   let stateVisit;
@@ -41,7 +41,15 @@ export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
     },[])
     
   return (
-    <MyContext.Provider value={{ totalCommand, setTotalCommand, nextStep,setNextStep, visit }}>
+    <MyContext.Provider value={{ 
+      totalCommand, 
+      setTotalCommand, 
+      nextStep,
+      setNextStep, 
+      visit, 
+      historyInput,
+      setHistoryInput 
+      }}>
       {children}
     </MyContext.Provider>
   );

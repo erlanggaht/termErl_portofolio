@@ -20,7 +20,7 @@ function Command({
 }) {
   const pathname = usePathname()
   const [input, setInput] = useState<string | number>();
-  const { nextStep, setNextStep,visit } = useContext(MyContext);
+  const { nextStep, setNextStep,visit,historyInput,setHistoryInput } = useContext(MyContext);
 
   const driverObj = driver({
     animate: true,
@@ -47,8 +47,13 @@ function Command({
       } 
   }, [nextStep,visit])
 
-  const HandleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const HandleKeyboard = (e: React.KeyboardEvent<HTMLInputElement> ) => {
+    const target = e.target as HTMLInputElement
     // Event Keyboard Enter
+    if(e.code === 'ArrowUp') {
+     setInput(historyInput)
+    }
+
     if (e.code === "Enter" && input) {
       setTimeout(() => {
         setNextStep?.(prev => prev + 1);
@@ -60,6 +65,7 @@ function Command({
           validator.trim(input?.toString().toLocaleLowerCase()),
         ]
       });
+       setHistoryInput?.(target.value)
     }
 
   
@@ -71,14 +77,14 @@ function Command({
       {active  ? (
         <InputCommand
           value={input}
-          onKeydown={HandleEnter}
+          onKeydown={HandleKeyboard}
           onChange={(e) => setInput(validator.trim(e.target.value))}
           disabled={active}
         />
       ) : (
         <InputCommand
           value={input}
-          onKeydown={HandleEnter}
+          onKeydown={HandleKeyboard}
           onChange={(e) => setInput(e.target.value)}
           disabled={active}
         />
