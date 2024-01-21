@@ -32,8 +32,8 @@ function Command({
       { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
         useFirstNextClick(setNextStep,setInput,"ls",contextCommand)
       }}},
-      { element: '#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about" first.', side: "bottom", align: 'start',onNextClick: () => {
-        useFirstNextClick(setNextStep,setInput,"cat about",contextCommand)
+      { element: '#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about me" first.', side: "bottom", align: 'start',onNextClick: () => {
+        useFirstNextClick(setNextStep,setInput,"cat about me",contextCommand)
       }}},
     ]
   });

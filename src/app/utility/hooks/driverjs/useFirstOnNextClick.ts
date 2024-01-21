@@ -12,12 +12,14 @@ function useFirstNextClick (
     setNextStep?.(prev => prev + 1)
     setInput?.(valueCommand)
 
-    return contextCommand?.setTotalCommand((prev:number[]) => {
-        return [
-          ...prev,
-          validator.trim(valueCommand!.toString().toLocaleLowerCase()),
-        ]
-      });
+       // @ts-ignore
+       contextCommand?.setTotalCommand((prev:number[]) => {
+          return [
+            ...prev,
+            validator.trim(valueCommand!.toString().toLocaleLowerCase()),
+          ]
+        });
+    
 }
 
 export default useFirstNextClick

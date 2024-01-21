@@ -6,10 +6,12 @@ import UserTerm from "./components/UserTerm/UserTerm";
 import { MyContext } from "./utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRouteRoot } from "./utility/roleCommand/roleCommands";
+import Teks from "./utility/Text/text";
 
 export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
+  const {about,learn_app} = Teks()
 
   const conditionCommand = (index: number) => {
     const lastIndexText = totalCommand?.[index + 1]
@@ -26,8 +28,8 @@ export default function Home() {
         case "ls":
           return (
             <div role="resultCommand">
-              <p role="fileRoute">about</p>
               <p role="fileRoute">learn_app</p>
+              <p role="fileRoute">about me</p>
               <p role="folderRoute">document</p>
               <p role="folderRoute">project</p>
             </div>
@@ -46,14 +48,15 @@ export default function Home() {
           if (catFile?.command === 'cat learn_app') {
             return (
               <div role="resultCommand">
-                <span>'cd home' ( back to home )</span>
+                <h2>Home:</h2>
+                <span>{learn_app}</span>
               </div>
             )
           }
-          else if (catFile?.command === 'cat about') {
+          else if (catFile?.command === 'cat about me') {
            return (
              <div role="resultCommand">
-              <span>Hello My Name Erlangga Hidayatullah</span>
+              <span>{about}</span>
             </div>
            )
           }
@@ -83,11 +86,6 @@ export default function Home() {
               contextCommand={{ totalCommand, setTotalCommand }}
               active={false}
             />
-            {/* <div role="resultCommand">
-                <p role="folderRoute">Document</p>
-                <p role="folderRoute">Project</p>
-                <p role="fileRoute">About</p>
-              </div> */}
           </UserTerm>
         ) : (
           totalCommand?.map((m, i) => {

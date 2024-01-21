@@ -4,7 +4,7 @@ import Command from "@/app/components/Command/Command";
 import Terminal from "@/app//components/Terminal/Terminal";
 import UserTerm from "@/app/components/UserTerm/UserTerm";
 import { MyContext } from "@/app//utility/GlobalContext/MyContext";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRouteRoot } from "@/app/utility/roleCommand/roleCommands";
 
 export default function Home() {
@@ -20,16 +20,11 @@ export default function Home() {
     // find catFile
     const catFile = RoleCatFile.find((file) => file.command == lastIndexText)
 
-    // cd .. ( back )
-
     if (index !== totalCommand!.length - 1) {
       switch (lastIndexText) {
         case "ls":
           return (
             <div role="resultCommand">
-              <p role="fileRoute">about</p>
-              <p role="fileRoute">learn_app</p>
-              <p role="folderRoute">document</p>
               <p role="folderRoute">project</p>
             </div>
           );
@@ -42,22 +37,6 @@ export default function Home() {
               router.push(cdRoute.link);
             }
             break;
-        case catFile?.command:
-          if (catFile?.command === 'cat learn_app') {
-            return (
-              <div role="resultCommand">
-                <span>'cd home' ( back to home )</span>
-              </div>
-            )
-          }
-          else if (catFile?.command === 'cat about') {
-           return (
-             <div role="resultCommand">
-              <span>Hello My Name Erlangga Hidayatullah</span>
-            </div>
-           )
-          }
-
         case 'clear':
           setTotalCommand?.(["default"]);
         default:

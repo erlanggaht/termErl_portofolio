@@ -3,8 +3,8 @@ import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { createContext } from "react";
 
 export type TypeValue = {
-  totalCommand?: string[];
-  setTotalCommand?: Dispatch<SetStateAction<string[]>>;
+  totalCommand?: string[],
+  setTotalCommand?: Dispatch<SetStateAction<string[]>>,
   nextStep?: number,
   setNextStep?: Dispatch<SetStateAction<number>>
 };

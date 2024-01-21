@@ -48,7 +48,7 @@ export const RoleRouteRoot: InterfaceRoleRouteRoot[] = [
 
 export const RoleCatFile: InterfaceRoleCatFile[] = [
   {
-    command: "cat about",
+    command: "cat about me",
   },
   {
     command: "cat learn_app",
