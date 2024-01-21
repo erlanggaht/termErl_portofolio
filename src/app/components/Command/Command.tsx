@@ -4,7 +4,7 @@ import validator from "validator";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import useFirstNextClick from "@/app/utility/hooks/driverjs/useFirstOnNextClick";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function Command({
   active = false,
@@ -20,7 +20,7 @@ function Command({
 }) {
   const pathname = usePathname()
   const [input, setInput] = useState<string | number>();
-  const { nextStep, setNextStep } = useContext(MyContext);
+  const { nextStep, setNextStep,visit } = useContext(MyContext);
 
   const driverObj = driver({
     animate: true,
@@ -39,10 +39,13 @@ function Command({
       }}},
     ]
   });
+
   useEffect(() => {
-      const getVisit = JSON.parse((localStorage.getItem('visit') || '{}'));
-      if(parseInt(getVisit) <= 2 && driverActive && pathname === '/') driverObj.drive(nextStep)
-  }, [nextStep])
+      if(visit >= 2) setTimeout(() => driverObj.destroy(),1000)  
+      else {
+        if(driverActive && pathname === '/') driverObj.drive(nextStep)         
+      } 
+  }, [nextStep,visit])
 
   const HandleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Event Keyboard Enter
