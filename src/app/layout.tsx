@@ -28,8 +28,8 @@ export default function RootLayout({
         <HeadTitle/>
         </head>
       <WrapperContextClient>
-        <LoadingPage/>
         <body className={inter.className}>
+           <LoadingPage/>
           <MainLayout>{children}</MainLayout>
         </body>
       </WrapperContextClient>
