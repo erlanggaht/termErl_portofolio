@@ -14,6 +14,9 @@ export const RoleCommand: TypeRoleCommands[] = [
     command: "ls",
   },
   {
+    command: "pwd"
+  },
+  {
     command: "cd",
   },
   {
@@ -52,7 +55,7 @@ export const RoleCatFile: InterfaceRoleCatFile[] = [
     command: "cat about me",
   },
   {
-    command: "cat learn_app",
+    command: "cat list command",
   },
 ];
 
@@ -61,6 +64,10 @@ export const RoleCatFile: InterfaceRoleCatFile[] = [
 export const RoleOther: InterfaceRoleOther[]  = [
   {
     command: "ls",
+    description: "view all directory listings",
+  },
+  {
+    command: "pwd",
     description: "view all directory listings",
   },
   {

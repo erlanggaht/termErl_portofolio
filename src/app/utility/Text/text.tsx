@@ -1,24 +1,27 @@
 import React, { ReactElement } from "react"
-import { htmlAbout, htmlLearn_App_Route,htmlLearn_App_CatFile,htmlLearn_App_Other } from "./htmlText"
+import { htmlAbout, htmllist_command_Route,htmllist_command_CatFile,htmllist_command_Other,html_ls_pwd } from "./htmlText"
 
 type TypeTeks = {
     about?: ReactElement,
-    learn_app?:{
-        htmlLearn_App_Route?: React.ReactNode[],
-        htmlLearn_App_CatFile?: React.ReactNode[]
-        htmlLearn_App_Other?: React.ReactNode[]
-    } 
-        
+    list_command?:{
+        htmllist_command_Route?: React.ReactNode[],
+        htmllist_command_CatFile?: React.ReactNode[]
+        htmllist_command_Other?: React.ReactNode[]
+    },  
+    list_directory:  React.ReactNode
+    
 }
 
 function Teks(): TypeTeks  {
     return {
         about: htmlAbout,
-        learn_app: {
-            htmlLearn_App_Route,
-            htmlLearn_App_CatFile,
-            htmlLearn_App_Other
+        list_command: {
+            htmllist_command_Route,
+            htmllist_command_CatFile,
+            htmllist_command_Other
         },
+        list_directory: html_ls_pwd
+        
     }
             
 }

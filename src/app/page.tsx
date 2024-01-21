@@ -11,7 +11,7 @@ import Teks from "./utility/Text/text";
 export default function Home() {
   const router = useRouter();
   const { totalCommand, setTotalCommand } = useContext(MyContext);
-  const {about,learn_app} = Teks()
+  const {about,list_command,list_directory} = Teks()
 
   const conditionCommand = (index: number) => {
     const lastIndexTextInput = totalCommand?.[index + 1]
@@ -28,12 +28,15 @@ export default function Home() {
         case "ls":
           return (
             <div role="resultCommand">
-              <p role="fileRoute">learn_app</p>
-              <p role="fileRoute">about me</p>
-              <p role="folderRoute">document</p>
-              <p role="folderRoute">project</p>
+              {list_directory}
             </div>
           );
+        case 'pwd': 
+        return (
+          <div role="resultCommand">
+            {list_directory}
+          </div>
+        );
         case "cd .." : 
           setTotalCommand?.(["default"]);
           router.replace('/')
@@ -45,15 +48,15 @@ export default function Home() {
           }
           break;
         case catFile?.command:
-          if (catFile?.command === 'cat learn_app') {
+          if (catFile?.command === 'cat list command') {
             return (
               <div role="resultCommand">
                 <h2 className="pb-2">Home:</h2>
                 <hr  className="border-darkness"/>
                 <div className="grid grid-cols-3 pt-2">
-                <p>{learn_app?.htmlLearn_App_Other}</p>
-                <p>{learn_app?.htmlLearn_App_Route}</p>
-                <p>{learn_app?.htmlLearn_App_CatFile}</p>
+                <p>{list_command?.htmllist_command_Other}</p>
+                <p>{list_command?.htmllist_command_Route}</p>
+                <p>{list_command?.htmllist_command_CatFile}</p>
                 </div>
               </div>
             )
