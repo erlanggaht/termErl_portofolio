@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { createContext } from "react";
 
 export type TypeValue = {
@@ -19,7 +19,17 @@ export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
   const [totalCommand, setTotalCommand] = useState<string[]>(["default"]);
   const [nextStep,setNextStep] = useState<number>(0)
 
+    // verification visit one time
+    React.useEffect(() => {
+      const getVisit = localStorage.getItem('visit');
+      
+      if(!getVisit) localStorage.setItem('visit',JSON.stringify(1))
+      else {
+        localStorage.setItem('visit', JSON.parse(getVisit) + 1)
+      }
 
+    },[])
+    
   return (
     <MyContext.Provider value={{ totalCommand, setTotalCommand, nextStep,setNextStep }}>
       {children}

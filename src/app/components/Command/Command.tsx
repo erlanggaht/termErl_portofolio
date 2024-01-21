@@ -39,9 +39,9 @@ function Command({
       }}},
     ]
   });
-  
   useEffect(() => {
-    if(driverActive || pathname === '/') driverObj.drive(nextStep)
+      const getVisit = JSON.parse((localStorage.getItem('visit') || '{}'));
+      if(parseInt(getVisit) <= 2 && driverActive && pathname === '/') driverObj.drive(nextStep)
   }, [nextStep])
 
   const HandleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
