@@ -1,11 +1,14 @@
 'use client'
-import React  from "react";
+import React,{useContext}  from "react";
+import { MyContext } from "../utility/GlobalContext/MyContext";
+import TerminalRunProject from "./Terminal/TerminalRunProject";
 
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const {openProject,runProject} = useContext(MyContext)
 
   // hover opacity effect
   React.useEffect(() => {
@@ -27,10 +30,10 @@ export default function MainLayout({
     }
   }, [])
 
-
   return (
     <>    
-    <main className="mx-auto w-full px-6 py-20 md:max-w-[1240px] relative">
+    <main className={`${runProject?.active ? "" : "mx-auto"} w-full px-6 py-20 md:max-w-[1340px] relative`}>
+      {openProject && <TerminalRunProject/>}
       {children}
     </main>
     </>

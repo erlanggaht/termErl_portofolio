@@ -1,7 +1,10 @@
-import React from "react";
+'use client'
+import { MyContext } from "@/app/utility/GlobalContext/MyContext";
+import {useContext} from "react";
 
 
 function Terminal({ children }: { children: React.ReactNode }) {
+  const {runProject} = useContext(MyContext)
 
   return (
     <div
@@ -16,7 +19,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
             <p className="h-[20px] max-w-[80%] overflow-hidden text-sm">
               Erlangga Hidayatullah
             </p>
-            <p className="cursor-pointe text-sm">&#x2715;</p>
+            <p className="cursor-pointer text-sm">&#x2715;</p>
           </div>
         </div>
 
@@ -30,7 +33,13 @@ function Terminal({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className="h-[80vh] overflow-auto  p-3">{children}</div>
+      {runProject?.active ? 
+      <div className="h-[80vh]"> <iframe src="https://erlanggahidayatullah.vercel.app" height={'100%'} width={'100%'}/> </div> :
+      <div className="h-[80vh] overflow-auto  p-3">
+        {children}
+      </div>
+      }
+
     </div>
   );
 }

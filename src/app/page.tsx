@@ -6,11 +6,11 @@ import UserTerm from "./components/UserTerm/UserTerm";
 import { MyContext } from "./utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRoute } from "./utility/roleCommand/roleCommands";
-import Teks from "./utility/Text/text";
+import Teks from "./utility/Text/Home/text";
 
 export default function Home() {
   const router = useRouter();
-  const { totalCommand, setTotalCommand } = useContext(MyContext);
+  const { totalCommand, setTotalCommand,setClear } = useContext(MyContext);
   const {about,list_command,list_directory} = Teks()
 
   const conditionCommand = (index: number) => {
@@ -21,7 +21,6 @@ export default function Home() {
     
     // find catFile
     const catFile = RoleCatFile.find((file) => file.command == lastIndexTextInput)
-
 
     if (index !== totalCommand!.length - 1) {
       switch (lastIndexTextInput) {
@@ -41,6 +40,10 @@ export default function Home() {
           setTotalCommand?.(["default"]);
           router.replace('/')
         break;
+        case 'clear':
+        setClear?.(true)
+
+        // Section Not Command Other
         case cdRoute?.command:
           if (cdRoute?.link) {
             setTotalCommand?.(["default"]);
@@ -68,9 +71,6 @@ export default function Home() {
             </div>
            )
           }
-
-        case 'clear':
-          setTotalCommand?.(["default"]);
         default:
           return (
             <p className="font-thin">

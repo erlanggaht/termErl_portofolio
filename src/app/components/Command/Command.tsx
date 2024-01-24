@@ -4,7 +4,7 @@ import validator from "validator";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import useFirstNextClick from "@/app/utility/hooks/driverjs/useFirstOnNextClick";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function Command({
   active = false,
@@ -20,7 +20,7 @@ function Command({
 }) {
   const pathname = usePathname()
   const [input, setInput] = useState<string | number>();
-  const { nextStep, setNextStep,visit,historyInput,setHistoryInput } = useContext(MyContext);
+  const { nextStep, setNextStep,visit,historyInput,setHistoryInput,clear,setClear, setTotalCommand} = useContext(MyContext);
 
   const driverObj = driver({
     animate: true,
@@ -40,6 +40,7 @@ function Command({
     ]
   });
 
+  // First Show Driverjs
   useEffect(() => {
       if(visit >= 2) setTimeout(() => driverObj.destroy(),1000)  
       else {
@@ -47,13 +48,30 @@ function Command({
       } 
   }, [nextStep,visit])
 
+  // Clear 
+  useEffect(() => {
+    if(clear) {
+      setInput('')
+      setTotalCommand?.(['default'])
+    }
+    return () => setClear?.(false)
+  },[clear])
+
   const HandleKeyboard = (e: React.KeyboardEvent<HTMLInputElement> ) => {
     const target = e.target as HTMLInputElement
-    // Event Keyboard Enter
+    
+    //  Event Keyboard Up
     if(e.code === 'ArrowUp') {
-     setInput(historyInput)
-    }
+      setInput(historyInput)
+    } 
 
+    //  Event Keyboard Up
+    if(e.code === 'ArrowDown') {
+      setInput('')
+    } 
+   
+    
+    // Event Keyboard Enter
     if (e.code === "Enter" && input) {
       setTimeout(() => {
         setNextStep?.(prev => prev + 1);

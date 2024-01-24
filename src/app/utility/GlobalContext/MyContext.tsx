@@ -2,6 +2,11 @@
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { createContext } from "react";
 
+type TypeSetRunProject = {
+  active: boolean,
+  link: string
+}
+
 export type TypeValue = {
   totalCommand?: string[],
   setTotalCommand?: Dispatch<SetStateAction<string[]>>,
@@ -9,7 +14,13 @@ export type TypeValue = {
   setNextStep?: Dispatch<SetStateAction<number>>,
   visit?: any,
   historyInput?: string | number,
-  setHistoryInput?:  Dispatch<SetStateAction<number | string>>
+  setHistoryInput?:  Dispatch<SetStateAction<number | string>>,
+  clear?: boolean,
+  setClear?: Dispatch<SetStateAction<boolean>>,
+  runProject?: TypeSetRunProject,
+  setRunProject?: Dispatch<SetStateAction<TypeSetRunProject>>,
+  openProject?: boolean,
+  setOpenProject?: Dispatch<SetStateAction<boolean>>
 };
 
 // Create Context
@@ -19,6 +30,13 @@ export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
   const [totalCommand, setTotalCommand] = useState<string[]>(["default"]);
   const [nextStep,setNextStep] = useState<number>(0)
   const [historyInput,setHistoryInput] = useState<number | string>('')
+  const [clear,setClear] = useState<boolean>(false)
+  
+  const [openProject,setOpenProject] = useState<boolean>(false)
+  const [runProject,setRunProject] = useState<TypeSetRunProject>({
+    active : false,
+    link : ""
+  })
   
   // verification visit one time
   let stateVisit;
@@ -48,7 +66,13 @@ export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
       setNextStep, 
       visit, 
       historyInput,
-      setHistoryInput 
+      setHistoryInput,
+      clear,
+      setClear,
+      runProject,
+      setRunProject,
+      openProject,
+      setOpenProject
       }}>
       {children}
     </MyContext.Provider>
