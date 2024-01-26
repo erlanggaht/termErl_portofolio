@@ -13,8 +13,8 @@ export type TypeValue = {
   nextStep?: number,
   setNextStep?: Dispatch<SetStateAction<number>>,
   visit?: any,
-  historyInput?: string | number,
-  setHistoryInput?:  Dispatch<SetStateAction<number | string>>,
+  historyInput?: string,
+  setHistoryInput?:  Dispatch<SetStateAction<string>>,
   clear?: boolean,
   setClear?: Dispatch<SetStateAction<boolean>>,
   runProject?: TypeSetRunProject,
@@ -29,7 +29,7 @@ export const MyContext = createContext<TypeValue>({});
 export const WrapperContextClient = ({ children }: { children: ReactNode }) => {
   const [totalCommand, setTotalCommand] = useState<string[]>(["default"]);
   const [nextStep,setNextStep] = useState<number>(0)
-  const [historyInput,setHistoryInput] = useState<number | string>('')
+  const [historyInput,setHistoryInput] = useState<string>('')
   const [clear,setClear] = useState<boolean>(false)
   
   const [openProject,setOpenProject] = useState<boolean>(false)

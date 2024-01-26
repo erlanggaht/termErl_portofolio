@@ -34,7 +34,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
       </div>
 
       {runProject?.active ? 
-      <div className="h-[80vh]"> <iframe src="https://erlanggahidayatullah.vercel.app" height={'100%'} width={'100%'}/> </div> :
+      <div className="h-[80vh]"> <iframe src={runProject.link} height={'100%'} width={'100%'}/> </div> :
       <div className="h-[80vh] overflow-auto  p-3">
         {children}
       </div>
