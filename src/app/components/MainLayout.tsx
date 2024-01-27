@@ -50,9 +50,13 @@ export default function MainLayout({
 
   return (
     <>    
-    <main className={`${runProject?.active ? "" : "mx-auto"} w-full px-6 py-20 md:max-w-[1340px] relative`}>
-      {openProject && <TerminalRunProject/>}
+    <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1360px]"} w-full px-6 py-20 relative`}>
+      <div className="col-span-2">
       {children}
+      </div>
+      <div className={`${runProject?.active ? "flex justify-center items-end" : "absolute bottom-12 right-16"}`}>
+      {openProject && <TerminalRunProject/>}
+      </div>
     </main>
     </>
   );
