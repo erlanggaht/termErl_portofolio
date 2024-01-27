@@ -26,7 +26,6 @@ const projectsMe: TypeProjectsMe[]  = [
 
 export default function ListProject() {
     const {setRunProject,historyInput} = useContext(MyContext)
-    console.log(historyInput)
     const FnrunProject = (link:string) => {
         setRunProject?.({
             active: true,

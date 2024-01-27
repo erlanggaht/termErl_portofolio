@@ -40,17 +40,23 @@ export default function MainLayout({
 
   React.useEffect(() => {
     if(openProject) {
-      console.log('oke')
       document.querySelector("#TerminalRunProject")?.classList.add('fade')
       setTimeout(() => {
         document.querySelector("#TerminalRunProject")?.classList.remove('fade')
       }, 100);
     }
-  },[openProject])
+
+    if(runProject) {
+      document.querySelector("iframe")?.classList.add('fade')
+      setTimeout(() => {
+        document.querySelector("iframe")?.classList.remove('fade')
+      }, 900);
+    }
+  },[openProject,runProject])
 
   return (
     <>    
-    <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1360px]"} w-full px-6 py-20 relative`}>
+    <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1260px]"} w-full px-6 py-20 relative`}>
       <div className="col-span-2">
       {children}
       </div>
