@@ -30,6 +30,24 @@ export default function MainLayout({
     }
   }, [])
 
+  // Fade
+  React.useEffect(() => {
+    document.body.classList.add('fade');
+    setTimeout(() => {
+    document.body.className = '';
+    }, 1201);
+  },[])
+
+  React.useEffect(() => {
+    if(openProject) {
+      console.log('oke')
+      document.querySelector("#TerminalRunProject")?.classList.add('fade')
+      setTimeout(() => {
+        document.querySelector("#TerminalRunProject")?.classList.remove('fade')
+      }, 100);
+    }
+  },[openProject])
+
   return (
     <>    
     <main className={`${runProject?.active ? "" : "mx-auto"} w-full px-6 py-20 md:max-w-[1340px] relative`}>
