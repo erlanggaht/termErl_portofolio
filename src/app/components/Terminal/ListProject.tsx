@@ -2,12 +2,13 @@
 import { MyContext } from '@/app/utility/GlobalContext/MyContext'
 import React, { useContext } from 'react'
 import projectsMe from './ProjectMe'
-import { redirect, useRouter } from 'next/navigation'
 import toggleFullScreen from '@/app/utility/FullscreenToggle/fullscreenToggle'
+import useGetYearHistoryInputRun from '@/app/utility/hooks/useGetYearHistoryInput/useGetYearHistoryInput'
 
 export default function ListProject() {
     const { setRunProject, historyInput, runProject } = useContext(MyContext)
-
+    const getYearInput = useGetYearHistoryInputRun()
+    
     // Run
     const FnrunProject = (link: string) => {
         setRunProject?.({
@@ -29,8 +30,7 @@ export default function ListProject() {
 
 
     if (historyInput?.split(' ')[0] === 'run') {
-        const getYearInput = historyInput?.split(' ')[1]?.split('_')[1]?.split('.')[0]
-        const filterYear = projectsMe.filter(projectYear => projectYear.year === parseInt(getYearInput))
+        const filterYear = projectsMe.filter(projectYear => projectYear.year === getYearInput)
         if (filterYear.length > 0) return filterYear.map((m, i) => {
             return <details className="mb-2">
                 <summary className="p-1 px-4 rounded-lg cursor-pointer mb-1 hover:opacity-80">
