@@ -1,10 +1,19 @@
 'use client'
+import toggleFullScreen from "@/app/utility/FullscreenToggle/fullscreenToggle";
 import { MyContext } from "@/app/utility/GlobalContext/MyContext";
+import { usePathname } from "next/navigation";
 import {useContext} from "react";
 
 
 function Terminal({ children }: { children: React.ReactNode }) {
+  const pathName = usePathname()
   const {runProject} = useContext(MyContext)
+
+  // Run Project Fullscreen Mode
+  const fullScreenMode = () => {
+    console.log(pathName)
+    if(runProject || pathName === '/projects') toggleFullScreen('iframe')
+  }
 
   return (
     <div
@@ -23,13 +32,20 @@ function Terminal({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="inline-block flex-auto ">
+        <div className="flex justify-between  flex-auto ">
+          <div>
           <span className="inline-block -translate-y-[1px] cursor-pointer rounded-tl-md px-1 hover:bg-hoverBg">
             &#65291;
           </span>
           <span className="inline-block -translate-y-[3px] text-xl opacity-30">
             &#x7C;
           </span>
+          </div>
+          <div className="flex gap-6 font-bold mr-2">
+          <p className="-translate-y-[9px] hover:cursor-pointer  ">&#x1F5D5;</p>
+          <div className="w-[12px] h-[12px] border-2 translate-y-[5px] hover:cursor-pointer rounded-sm" onClick={() => fullScreenMode()}></div>
+          <p className="cursor-pointer text-sm font-bold">&#x1F5D9;</p>
+          </div>
         </div>
       </div>
 
