@@ -32,7 +32,7 @@ export default function ListProject() {
     if (historyInput?.split(' ')[0] === 'run') {
         const filterYear = projectsMe.filter(projectYear => projectYear.year === getYearInput)
         if (filterYear.length > 0) return filterYear.map((m, i) => {
-            return <details className="mb-2">
+            return <details className="mb-2" key={i}>
                 <summary className="p-1 px-4 rounded-lg cursor-pointer mb-1 hover:opacity-80">
                     <span className="font-bold">{m.name}</span>
                 </summary>

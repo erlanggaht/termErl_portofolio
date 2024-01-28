@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { MyContext, TypeValue } from "@/app/utility/GlobalContext/MyContext";
 import validator from "validator";
-import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import useFirstNextClick from "@/app/utility/hooks/driverjs/useFirstOnNextClick";
-import { usePathname } from "next/navigation";
+import useDriverObj from "@/app/utility/hooks/driverjs/useDriverObj/useDriverObj";
 
 function Command({
   active = false,
@@ -18,64 +16,29 @@ function Command({
   children?: React.ReactNode;
   driverActive?: boolean;
 }) {
-  const pathname = usePathname()
   const [input, setInput] = useState<string | number>();
-  const { nextStep, setNextStep,visit,historyInput,setHistoryInput,clear,setClear, setTotalCommand} = useContext(MyContext);
+  const { setNextStep, historyInput, setHistoryInput,} = useContext(MyContext);
+  useDriverObj(setInput,contextCommand,driverActive)
 
-  const driverObj = driver({
-    animate: true,
-    showProgress: true,
-    showButtons: ['next', 'close'],
-    doneBtnText: 'Finish',
-    steps: [
-      { element: 'body', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
-        setNextStep?.(prev => prev + 1);
-      }} },
-      { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
-        useFirstNextClick(setNextStep,setInput,"ls",contextCommand)
-      }}},
-      { element: '#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about me" first.', side: "bottom", align: 'start',onNextClick: () => {
-        useFirstNextClick(setNextStep,setInput,"cat about me",contextCommand)
-      }}},
-    ]
-  });
-
-  // First Show Driverjs
-  useEffect(() => {
-      if(visit >= 2) setTimeout(() => driverObj.destroy(),1000)  
-      else {
-        if(driverActive && pathname === '/') driverObj.drive(nextStep)         
-      } 
-  }, [nextStep,visit])
-
-  // Clear 
-  useEffect(() => {
-    if(clear) {
-      setInput('')
-      setTotalCommand?.(['default'])
-    }
-    return () => setClear?.(false)
-  },[clear])
-
-  const HandleKeyboard = (e: React.KeyboardEvent<HTMLInputElement> ) => {
+  const HandleKeyboard = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement
-    
-    //  Event Keyboard Up
-    if(e.code === 'ArrowUp') {
-      setInput(historyInput)
-    } 
 
     //  Event Keyboard Up
-    if(e.code === 'ArrowDown') {
+    if (e.code === 'ArrowUp') {
+      setInput(historyInput)
+    }
+
+    //  Event Keyboard Up
+    if (e.code === 'ArrowDown') {
       setInput('')
-    } 
-   
-    
+    }
+
+
     // Event Keyboard Enter
     if (e.code === "Enter" && input) {
       setTimeout(() => {
         setNextStep?.(prev => prev + 1);
-      },0)
+      }, 0)
       // @ts-ignore
       contextCommand.setTotalCommand((prev) => {
         return [
@@ -83,16 +46,16 @@ function Command({
           validator.trim(input?.toString().toLocaleLowerCase()),
         ]
       });
-       setHistoryInput?.(target.value)
+      setHistoryInput?.(target.value)
     }
 
-  
+
   };
 
-  
+
   return (
     <>
-      {active  ? (
+      {active ? (
         <InputCommand
           value={input}
           onKeydown={HandleKeyboard}
@@ -107,7 +70,7 @@ function Command({
           disabled={active}
         />
       )}
-      
+
       {children}
     </>
   );

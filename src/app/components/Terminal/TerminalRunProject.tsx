@@ -5,7 +5,7 @@ import ListProject from './ListProject'
 import useGetYearHistoryInputRun from '@/app/utility/hooks/useGetYearHistoryInput/useGetYearHistoryInput'
 
 function TerminalRunProject() {
-    const {setOpenProject,setRunProject,runProject,historyInput} = useContext(MyContext)
+    const {setOpenProject,setRunProject,runProject} = useContext(MyContext)
     const getYearInput = useGetYearHistoryInputRun()
 
 
