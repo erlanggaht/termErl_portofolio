@@ -56,7 +56,7 @@ export default function MainLayout({
 
   return (
     <>    
-    <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1250px]"} w-full px-6 py-20 relative`}>
+    <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1250px]"}  px-6 py-20 relative`}>
       <div className="col-span-2">
       {children}
       </div>
