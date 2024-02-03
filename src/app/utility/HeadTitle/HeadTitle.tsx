@@ -8,5 +8,6 @@ export default function HeadTitle() {
   
   if(pathname === '/') return <title>TermErl /</title>
   else if(pathname === '/document') return <title>TermErl ~/document</title>
+  else if(pathname === '/projects') return <title>TermErl ~/projects</title>
 
 }
