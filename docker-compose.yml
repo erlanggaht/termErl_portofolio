@@ -1,0 +1,26 @@
+services:
+
+  termerl_portofolio:
+    build:
+      context: .
+      dockerfile: dockerfile.staging
+    image: termerl:erlanggaht
+    container_name: termerl_portofolio
+    ports: 
+    - 4003:4003
+    command: ['npm','run','bash-start']
+    restart: always
+
+#   nginx-todolist:
+#       image: nginx:alpine
+#       container_name: nginx-todolist
+#       restart: unless-stopped
+#       volumes:
+#         - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#       ports:
+#         - 8080:8080
+#       networks:
+#         - todolist
+#       depends_on: 
+#         - todolist-erlanggaht
+

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "bash-start" : "sh ./bash/run-start.sh"
   },
   "dependencies": {
     "driver.js": "^1.3.1",

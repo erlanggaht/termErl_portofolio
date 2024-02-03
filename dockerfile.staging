@@ -1,0 +1,33 @@
+FROM node:18-alpine as deps
+
+RUN apk add --no-cache libc6-compat
+RUN apk add bash
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN  npm install 
+
+FROM node:18-alpine as builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED 1
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+RUN addgroup --system --gid 1001 groupuser_termerl
+RUN adduser --system --uid 1001 user_termerl
+
+COPY --from=builder /app/bash ./bash
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+# USER usertodo
+
+# EXPOSE 4001
+# ENV PORT 4001
+
+# CMD [ "npm", "run", "bash-start" ]
