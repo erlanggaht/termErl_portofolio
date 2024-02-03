@@ -9,10 +9,10 @@ function Terminal({ children }: { children: React.ReactNode }) {
   const pathName = usePathname()
   const {runProject} = useContext(MyContext)
 
-  // Run Project Fullscreen Mode
+  // Fullscreen Mode
   const fullScreenMode = () => {
-    console.log(pathName)
-    if(runProject || pathName === '/projects') toggleFullScreen('iframe')
+    if(runProject?.active && pathName === '/projects') toggleFullScreen('iframe')
+    else toggleFullScreen('body')
   }
 
   return (
