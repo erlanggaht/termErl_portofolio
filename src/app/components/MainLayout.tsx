@@ -22,7 +22,6 @@ export default function MainLayout({
     setSelectMode?.(false)
   }
 
-  console.log(openProject)
   return (
     <>
 
@@ -30,29 +29,36 @@ export default function MainLayout({
         <span className="font-thin text-sm ">Mode {modeGUI ? "GUI" : "CLI"} (active)</span>
       </div>
 
-      {/* Shortcut KBD */}
-      {
-        modeGUI && <div id="Shortcut" className={`fixed top-20 left-4  ${runProject?.active && 'hidden'}`}>
-          <div className="text-xs px-1 pb-2 text-gray-500">
-            <span className="pb-1 inline-block">shortcut:</span>
-            <br />
-            <span><span className="text-secondary">ls/pwd/list:</span> view list directory</span>
-            <br />
-            <span><span className="text-secondary">clear:</span> clear terminal</span>
-            <br />
-            <span><span className="text-secondary">cd ..:</span> back route </span>
-          </div>
-          <div className="flex max-w-[320px] flex-wrap gap-1 gap-y-2">
-            <KbdShortcut value="ls/list/pwd" runValue="list" />
-            <KbdShortcut value="clear" runValue="clear" />
-            {pathName === '/' ? <KbdShortcut value="cd .." runValue="" disabled={true} /> : <KbdShortcut value="cd .." runValue="cd .." />}
-          </div>
-        </div>
-      }
-      <main className={`${runProject?.active ? "grid grid-cols-3 gap-2" : "mx-auto w-[1250px]"}  px-6 py-20 relative`}>
-        <div className="col-span-2">
+
+      <main className={`
+       ${modeGUI && "grid md:grid-cols-4 grid-cols-1 gap-2"} 
+       ${!modeGUI  && `grid md:grid-cols-4 ${!runProject?.active && "grid-cols-4  md:grid-cols-1"}   gap-2`}   
+         px-6 md:py-20 py-16 relative`
+      }>
+
+        <div className={`${runProject?.active ? 'md:col-span-3' : 'md:col-span-3'}`}>
           {children}
         </div>
+
+        {/* Shortcut KBD */}
+        {
+          modeGUI && <div id="Shortcut" className={` ${runProject?.active && 'hidden'} w-full text-left`}>
+            <div className="text-xs px-1 pb-2 text-gray-500">
+              <span className="pb-1 inline-block">shortcut:</span>
+              <br />
+              <span><span className="text-secondary">ls/pwd/list:</span> view list directory</span>
+              <br />
+              <span><span className="text-secondary">clear:</span> clear terminal</span>
+              <br />
+              <span><span className="text-secondary">cd ..:</span> back route </span>
+            </div>
+            <div className="flex  flex-wrap gap-1 gap-y-2 ">
+              <KbdShortcut value="ls/list/pwd" runValue="list" />
+              <KbdShortcut value="clear" runValue="clear" />
+              {pathName === '/' ? <KbdShortcut value="cd .." runValue="" disabled={true} /> : <KbdShortcut value="cd .." runValue="cd .." />}
+            </div>
+          </div>
+        }
         <div className={`${runProject?.active ? "flex justify-center items-end" : "absolute bottom-12 right-16"}`}>
           {openProject && <TerminalRunProject />}
         </div>
@@ -63,7 +69,7 @@ export default function MainLayout({
       {
         selectMode &&
         <>
-          <div className="absolute bottom-12 right-56 z-[500]">
+          <div className="absolute  top-0 bottom-0 left-0 right-0 w-full flex justify-center items-center  z-[500]">
             <div id='TerminalSelectMode' className={`border border-darkness rounded-lg h-[320px] overflow-hidden  w-[420px] shadow bg-gradient-to-b from-body to-[#151515] z-[9999]`}>
               <div className="bg-darkness-100 rounded-t-md relative">
                 <p className="absolute right-3 top-2 cursor-pointer hover:opacity-80" onClick={() => setModes(true)}>✕</p>

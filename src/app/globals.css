@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  @apply overflow-hidden bg-body !font-SC text-lg text-white;
+  @apply md:overflow-hidden bg-body !font-SC text-lg text-white;
 }
 
 body,
@@ -75,4 +75,11 @@ iframe.fade,
 
 [role="fileRouteGUI"]:hover, [role="folderRouteGUI"]:hover, [role="fileRunGUI"]:hover {
   @apply bg-white text-darkness-100
+}
+
+
+@media screen and (max-width: 767px) {
+  #Shortcut {
+    grid-area: 1;  
+  }
 }

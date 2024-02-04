@@ -19,7 +19,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
     <div
       role="terminal"
       id="Terminal"
-      className="rounded-lg border border-darkness shadow-lg transition ease-out"
+      className="rounded-lg border border-darkness shadow-lg transition ease-out md:w-[80%] w-full mx-auto "
       style={{ opacity: 0.8 }}
     >
       <div className="flex items-center gap-1 rounded-t-md bg-darkness p-2 pb-0">
@@ -54,7 +54,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
       <iframe src={runProject.link} height={'100%'} width={'100%'}/> 
       </div> 
       :
-      <div className="h-[80vh] overflow-auto  p-3">
+      <div className="md:h-[80vh] h-[50vh] overflow-auto  p-3">
         {children}
       </div>
       }

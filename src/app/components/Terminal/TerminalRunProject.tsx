@@ -18,7 +18,7 @@ function TerminalRunProject() {
     }
   
   return (
-    <div id='TerminalRunProject' className={`border border-darkness rounded-lg h-[320px] overflow-hidden  w-[420px] shadow bg-gradient-to-b from-body to-[#151515] z-[9999]`}>
+    <div id='TerminalRunProject' className={`border border-darkness rounded-lg h-[320px] overflow-hidden  md:w-[420px] w-full shadow bg-gradient-to-b from-body to-[#151515] z-[9999] mb-[14px] md:mr-16`}>
     <div className="bg-darkness-100 rounded-t-md relative">
       <p className="absolute right-3 top-2 cursor-pointer hover:opacity-80 " onClick={() => closeRunProject()}>✕</p>
       <span className="p-1 px-2 mt-1 ml-2  w-40 rounded-t-md inline-block  ">
