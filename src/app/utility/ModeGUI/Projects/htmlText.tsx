@@ -7,7 +7,8 @@ function HtmlTextProjectsGUI() {
 
     const { setTotalCommand,setOpenProject,setHistoryInput } = useContext(MyContext)
     const ClickTextGUI = (text: string) => {
-        setOpenProject?.(true)
+        if(text === 'cat list command') setOpenProject?.(false)
+        else setOpenProject?.(true)
         setHistoryInput?.(text)
         setTotalCommand?.(prev => {
             return [...prev, text]
