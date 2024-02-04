@@ -1,5 +1,5 @@
 "use client";
-import { useContext} from "react";
+import { useContext } from "react";
 import Command from "./components/Command/Command";
 import Terminal from "./components/Terminal/Terminal";
 import UserTerm from "./components/UserTerm/UserTerm";
@@ -7,41 +7,38 @@ import { MyContext } from "./utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRoute } from "./utility/roleCommand/roleCommands";
 import Teks from "./utility/Text/Home/text";
+import HtmlTextHomeGUI from "./utility/ModeGUI/Home/htmlText";
 
 export default function Home() {
   const router = useRouter();
-  const { totalCommand, setTotalCommand,setClear } = useContext(MyContext);
-  const {about,list_command,list_directory} = Teks()
+  const { totalCommand, setTotalCommand, setClear, modeGUI } = useContext(MyContext);
+  const { about, list_command, list_directory } = Teks()
 
   const conditionCommand = (index: number) => {
     const lastIndexTextInput = totalCommand?.[index + 1]
-    
+
     // find cdRoute
     const cdRoute = RoleRoute.find((root) => root.command == lastIndexTextInput);
-    
+
     // find catFile
     const catFile = RoleCatFile.find((file) => file.command == lastIndexTextInput)
 
     if (index !== totalCommand!.length - 1) {
       switch (lastIndexTextInput) {
-        case "ls":
+        case 'ls': case "list": case "pwd":
           return (
             <div role="resultCommand">
-              {list_directory}
+              {
+                modeGUI ? <HtmlTextHomeGUI /> : list_directory
+              }
             </div>
           );
-        case 'pwd': 
-        return (
-          <div role="resultCommand">
-            {list_directory}
-          </div>
-        );
-        case "cd .." : 
+        case "cd ..":
           setTotalCommand?.(["default"]);
           router.replace('/')
-        break;
+          break;
         case 'clear':
-        setClear?.(true)
+          setClear?.(true)
 
         // Section Not Command Other
         case cdRoute?.command:
@@ -55,21 +52,21 @@ export default function Home() {
             return (
               <div role="resultCommand">
                 <h2 className="pb-2">Home:</h2>
-                <hr  className="border-darkness"/>
+                <hr className="border-darkness" />
                 <div className="grid grid-cols-3 pt-2">
-                <p>{list_command?.htmllist_command_Other}</p>
-                <p>{list_command?.htmllist_command_Route}</p>
-                <p>{list_command?.htmllist_command_CatFile}</p>
+                  <p>{list_command?.htmllist_command_Other}</p>
+                  <p>{list_command?.htmllist_command_Route}</p>
+                  <p>{list_command?.htmllist_command_CatFile}</p>
                 </div>
               </div>
             )
           }
           else if (catFile?.command === 'cat about me') {
-           return (
-             <div role="resultCommand">
-              <span>{about}</span>
-            </div>
-           )
+            return (
+              <div role="resultCommand">
+                <span>{about}</span>
+              </div>
+            )
           }
         default:
           return (
@@ -81,10 +78,6 @@ export default function Home() {
     }
   };
 
-  // if(loadingPage) {
-  //   return  <div className="fixed w-screen h-screen flex justify-center items-center"><LoadingPage/></div>
-  // }
-   
   return (
     <div>
       <Terminal>

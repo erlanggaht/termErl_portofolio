@@ -56,3 +56,23 @@ iframe.fade,
 #driver-popover-content {
   inset:auto auto 50% 70px !important;
 }
+
+
+
+/*  GUI MODE */
+
+[role="folderRouteGUI"] {
+  @apply text-folder cursor-pointer p-0 px-2 border rounded-md  border-darkness-100 inline-block mt-1;
+}
+
+[role="fileRouteGUI"] {
+  @apply font-thin text-file cursor-pointer p-0 px-2 border rounded-md  border-darkness-100 inline-block mt-1;
+}
+
+[role="fileRunGUI"] {
+  @apply font-thin text-link cursor-pointer p-0 px-2 border rounded-md  border-darkness-100 inline-block  mt-1;
+}
+
+[role="fileRouteGUI"]:hover, [role="folderRouteGUI"]:hover, [role="fileRunGUI"]:hover {
+  @apply bg-white text-darkness-100
+}

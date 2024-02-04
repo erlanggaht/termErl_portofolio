@@ -8,11 +8,11 @@ const stepsHome: any = (
   contextCommand: TypeValue,
 ) => {
   const pathname = usePathname()
-  const { setNextStep} = useContext(MyContext);
+  const { setNextStep,setSelectMode} = useContext(MyContext);
 
    
 if(pathname === '/') return [
-     { element: 'body', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
+     { element: '#Terminal', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
        setNextStep?.(prev => prev + 1);
      }} },
      { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
@@ -20,6 +20,7 @@ if(pathname === '/') return [
      }}},
      { element:'#TerminalContent:nth-child(2)', popover: { title: 'CLI', description: 'You need to type "cat about me" first.', side: "bottom", align: 'start',onNextClick: () => {
        useFirstNextClick(setNextStep,setInput,"cat about me",contextCommand)
+       setSelectMode?.(true)
      }}},
    ]  
 }  

@@ -7,7 +7,7 @@ import {useContext} from "react";
 
 function Terminal({ children }: { children: React.ReactNode }) {
   const pathName = usePathname()
-  const {runProject} = useContext(MyContext)
+  const {runProject,setClear} = useContext(MyContext)
 
   // Fullscreen Mode
   const fullScreenMode = () => {
@@ -28,7 +28,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
             <p className="h-[20px] max-w-[80%] overflow-hidden text-sm">
               Erlangga Hidayatullah
             </p>
-            <p className="cursor-pointer text-sm">&#x2715;</p>
+            <p className="cursor-pointer text-sm" onClick={() => setClear?.(true) }>&#x2715;</p>
           </div>
         </div>
 

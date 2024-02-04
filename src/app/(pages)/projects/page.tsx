@@ -7,10 +7,11 @@ import { MyContext } from "@/app//utility/GlobalContext/MyContext";
 import { useRouter } from "next/navigation";
 import { RoleCatFile, RoleRoute, RoleRunFile, RoutesNot } from "@/app/utility/roleCommand/roleCommands";
 import Teks from "@/app/utility/Text/Projects/text";
+import HtmlTextProjectsGUI from "@/app/utility/ModeGUI/Projects/htmlText";
 
 export default function Home() {
   const router = useRouter();
-  const { totalCommand, setTotalCommand,setClear,setOpenProject } = useContext(MyContext);
+  const { totalCommand, setTotalCommand,setClear,setOpenProject,modeGUI } = useContext(MyContext);
   const {list_command,list_directory} = Teks()
   const conditionCommand = (index: number) => {
     const lastIndexTextInput = totalCommand?.[index + 1]
@@ -27,18 +28,14 @@ export default function Home() {
 
     if (index !== totalCommand!.length - 1) {
       switch (lastIndexTextInput) {
-        case "ls":
+        case 'ls': case "list": case "pwd":
           return (
             <div role="resultCommand">
-              {list_directory}
+              {
+                modeGUI ? <HtmlTextProjectsGUI/> : list_directory
+              }
             </div>
           );
-          case 'pwd': 
-          return (
-            <div role="resultCommand">
-            {list_directory}
-          </div>
-        );
         case "cd .." : 
         setTotalCommand?.(["default"]);
         router.replace('/')

@@ -8,7 +8,6 @@ import useGetYearHistoryInputRun from '@/app/utility/hooks/useGetYearHistoryInpu
 export default function ListProject() {
     const { setRunProject, historyInput, runProject } = useContext(MyContext)
     const getYearInput = useGetYearHistoryInputRun()
-    
     // Run
     const FnrunProject = (link: string) => {
         setRunProject?.({
@@ -16,7 +15,6 @@ export default function ListProject() {
             link: link
         })
     }
-
 
     // Visit
     const FnVisit = (link: string) => {

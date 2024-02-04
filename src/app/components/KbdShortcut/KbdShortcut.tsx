@@ -3,10 +3,12 @@ import React, { useContext } from 'react'
 
 function KbdShortcut({
     value,
-    runValue = ''
+    runValue = '',
+    disabled = false
 } : {
     value?: string,
-    runValue: string
+    runValue: string,
+    disabled?: boolean
 }) {
     const { setTotalCommand,setClear } = useContext(MyContext)
 
@@ -18,7 +20,7 @@ function KbdShortcut({
     }
 
     return (
-        <span className="px-2 py-1.5 text-xs font-semibold text-gray-300 bg-body border border-darkness-100 rounded-lg shadow-sm cursor-pointer" onClick={() => ClickTextGUI(runValue)}>{value}</span>
+        <button disabled={disabled} className="px-2 py-1.5 text-xs font-semibold text-gray-300 bg-body border border-darkness-100 rounded-lg shadow-sm cursor-pointer disabled:cursor-not-allowed" onClick={() => ClickTextGUI(runValue)}>{value}</button>
     )
 }
 

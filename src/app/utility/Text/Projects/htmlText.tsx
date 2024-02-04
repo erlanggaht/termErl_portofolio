@@ -1,4 +1,4 @@
-import { RoleCatFile, RoleOther, RoleRunFile, projectsFile } from "../../roleCommand/roleCommands"
+import { RoleCatFile, RoleOther, projectsFile } from "../../roleCommand/roleCommands"
 
 
 // result cat
@@ -17,7 +17,7 @@ const htmllist_command_RunFile =  <p  className="font-thin text-secondary">'run 
 
 
 
-// result ls/pwd ( Home ) 
+// result ls/pwd ( projects ) 
 const html_ls_pwd = <>
 <p role="fileRoute">list command</p>
 {projectsFile.map((m,i) => {

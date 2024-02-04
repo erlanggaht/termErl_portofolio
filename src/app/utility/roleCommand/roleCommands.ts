@@ -18,6 +18,9 @@ export const RoleCommand: TypeRoleCommands[] = [
     command: "ls",
   },
   {
+    command: "list"
+  },
+  {
     command: "pwd",
   },
   {
@@ -101,11 +104,15 @@ export const RoleOther: InterfaceRoleOther[] = [
     description: "view all directory listings",
   },
   {
+    command: "list",
+    description: "view all directory listings",
+  },
+  {
     command: "pwd",
     description: "view all directory listings",
   },
   {
     command: "clear",
-    description: "view all directory listings",
+    description: "clear terminal",
   },
 ];
