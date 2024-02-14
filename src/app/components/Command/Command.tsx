@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { MyContext, TypeValue } from "@/app/utility/GlobalContext/MyContext";
+import { MyContext } from "@/app/utility/GlobalContext/MyContext";
 import validator from "validator";
 import "driver.js/dist/driver.css";
 import useDriverObj from "@/app/utility/hooks/driverjs/useDriverObj/useDriverObj";
+import { TypeValue } from "@/app/@types/MyContext";
 
 function Command({
   active = false,
@@ -37,7 +38,7 @@ function Command({
     // Event Keyboard Enter
     if (e.code === "Enter" && input) {
       setTimeout(() => {
-        setNextStep?.(prev => prev + 1);
+        setNextStep?.((prev:number) => prev + 1);
       }, 0)
       // @ts-ignore
       contextCommand.setTotalCommand((prev) => {
