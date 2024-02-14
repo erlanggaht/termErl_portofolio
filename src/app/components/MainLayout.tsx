@@ -32,7 +32,7 @@ export default function MainLayout({
 
       <main className={`
        ${modeGUI && "grid md:grid-cols-4 grid-cols-1 gap-2"} 
-       ${!modeGUI  && `grid md:grid-cols-4 ${!runProject?.active && "grid-cols-4  md:grid-cols-1"}   gap-2`}   
+       ${!modeGUI  && `grid md:grid-cols-4 ${!runProject?.active && "grid-cols-1  md:grid-cols-1"}   gap-2`}   
          px-6 md:py-20 py-16 relative`
       }>
 
