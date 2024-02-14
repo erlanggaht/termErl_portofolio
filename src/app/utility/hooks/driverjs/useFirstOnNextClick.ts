@@ -1,6 +1,6 @@
+import { TypeValue } from "@/app/@types/MyContext";
 import { Dispatch, SetStateAction } from "react";
 import validator from "validator";
-import { TypeValue } from "../../GlobalContext/MyContext";
 
 
 function useFirstNextClick (

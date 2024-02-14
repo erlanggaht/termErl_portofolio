@@ -1,8 +1,9 @@
 import  {useEffect,useContext} from 'react'
-import { MyContext, TypeValue } from '../../../GlobalContext/MyContext';
+import { MyContext } from '../../../GlobalContext/MyContext';
 import { driver } from 'driver.js';
 import stepsHome from './steps/stepsHome';
 import { usePathname } from 'next/navigation';
+import { TypeValue } from '@/app/@types/MyContext';
 
 function useDriverObj(
     setInput: React.Dispatch<React.SetStateAction<string | number | undefined>>,
