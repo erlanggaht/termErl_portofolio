@@ -1,16 +1,4 @@
-export type TypeRoleCommands = {
-  command?: string;
-  link?: string;
-  description?: string;
-  type?: string;
-};
-
-export interface InterfaceRoleRoute extends TypeRoleCommands {}
-export interface InterfaceRoleCatFile extends TypeRoleCommands {}
-export interface InterfaceRoleRunFile extends TypeRoleCommands {
-  type: "projects";
-}
-export interface InterfaceRoleOther extends TypeRoleCommands {}
+import { InterfaceRoleCatFile, InterfaceRoleOther, InterfaceRoleRoute, InterfaceRoleRunFile, TypeRoleCommands } from "@/app/@types/roleCommands";
 
 // Role Command
 export const RoleCommand: TypeRoleCommands[] = [
