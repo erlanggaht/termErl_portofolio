@@ -14,7 +14,7 @@ function KbdShortcut({
 
     const ClickTextGUI = (text: string) => {
         if(text === 'clear') setClear?.(true)
-        setTotalCommand?.(prev => {
+        setTotalCommand?.((prev:string) => {
             return [...prev, text]
         })
     }

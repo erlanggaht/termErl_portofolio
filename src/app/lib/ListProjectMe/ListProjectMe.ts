@@ -1,9 +1,4 @@
-type TypeProjectsMe = {
-  name: string;
-  link: string;
-  type: "web" | "mobile";
-  year: number;
-};
+import TypeProjectsMe from "@/app/@types/ProjectMe";
 
 const projectsMe: TypeProjectsMe[] = [
   {

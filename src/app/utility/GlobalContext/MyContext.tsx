@@ -1,31 +1,7 @@
 "use client";
-import React, { Dispatch, ReactNode, SetStateAction, use, useState } from "react";
+import { TypeSetRunProject, TypeValue } from "@/app/@types/MyContext";
+import React, {  ReactNode, useState } from "react";
 import { createContext } from "react";
-
-type TypeSetRunProject = {
-  active: boolean,
-  link: string
-}
-
-export type TypeValue = {
-  totalCommand?: string[],
-  setTotalCommand?: Dispatch<SetStateAction<string[]>>,
-  nextStep?: number,
-  setNextStep?: Dispatch<SetStateAction<number>>,
-  visit?: any,
-  historyInput?: string,
-  setHistoryInput?:  Dispatch<SetStateAction<string>>,
-  clear?: boolean,
-  setClear?: Dispatch<SetStateAction<boolean>>,
-  runProject?: TypeSetRunProject,
-  setRunProject?: Dispatch<SetStateAction<TypeSetRunProject>>,
-  openProject?: boolean,
-  setOpenProject?: Dispatch<SetStateAction<boolean>>,
-  modeGUI?: boolean,
-  setModeGUI?: Dispatch<SetStateAction<boolean>>,
-  selectMode?: boolean
-  setSelectMode?: Dispatch<SetStateAction<boolean>>,
-};
 
 // Create Context
 export const MyContext = createContext<TypeValue>({});
