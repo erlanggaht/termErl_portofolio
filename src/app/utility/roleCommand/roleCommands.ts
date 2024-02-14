@@ -41,10 +41,7 @@ export const RoleRoute: InterfaceRoleRoute[] = [
     command: "cd ~",
     link: "/home",
   },
-  {
-    command: "cd document",
-    link: "/document",
-  },
+
   {
     command: "cd projects",
     link: "/projects",
