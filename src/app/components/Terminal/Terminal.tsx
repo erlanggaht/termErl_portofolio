@@ -7,8 +7,7 @@ import {useContext} from "react";
 
 function Terminal({ children }: { children: React.ReactNode }) {
   const pathName = usePathname()
-  const {runProject,setClear} = useContext(MyContext)
-
+  const {runProject,setClear,setSelectMode} = useContext(MyContext)
   // Fullscreen Mode
   const fullScreenMode = () => {
     if(runProject?.active && pathName === '/projects') toggleFullScreen('iframe')
@@ -39,6 +38,10 @@ function Terminal({ children }: { children: React.ReactNode }) {
           </span>
           <span className="inline-block -translate-y-[3px] text-xl opacity-30">
             &#x7C;
+          </span>
+          <span className="inline-block -translate-y-[2px] cursor-pointer rounded-tl-md px-1 hover:bg-hoverBg has-tooltip "  onClick={() => setSelectMode(true)}>
+          <span className='tooltip rounded shadow p-1 bg-white text-primary -mt-8 text-sm w-32 text-center'>Mode CLI/GUI</span>
+          &#8943; 
           </span>
           </div>
           <div className="flex gap-6 font-bold mr-2">
