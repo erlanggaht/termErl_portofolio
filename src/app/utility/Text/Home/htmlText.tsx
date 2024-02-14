@@ -24,7 +24,6 @@ const htmllist_command_Other = RoleOther.map((m, i) => {
 const html_ls_pwd = <>
 <p role="fileRoute">list command</p>
 <p role="fileRoute">about me</p>
-<p role="folderRoute">document</p>
 <p role="folderRoute">projects</p>
 </>
 

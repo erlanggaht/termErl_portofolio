@@ -6,7 +6,7 @@ function HtmlTextHomeGUI() {
     
     const {setTotalCommand} = useContext(MyContext)
     const ClickTextGUI = (text:string) => {
-    setTotalCommand?.(prev => {
+    setTotalCommand?.((prev:string[]) => {
         return [...prev, text]
     })        
     }
@@ -15,7 +15,6 @@ function HtmlTextHomeGUI() {
         <>
             <span role="fileRouteGUI" onClick={() => ClickTextGUI('cat list command')}>list command</span><br />
             <span role="fileRouteGUI" onClick={() => ClickTextGUI('cat about me')}>about me</span><br />
-            <span role="folderRouteGUI" onClick={() => ClickTextGUI('cd document')}>document</span><br />
             <span role="folderRouteGUI" onClick={() => ClickTextGUI('cd projects')}>projects</span><br />
         </>
 
