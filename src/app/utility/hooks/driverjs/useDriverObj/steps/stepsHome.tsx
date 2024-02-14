@@ -1,7 +1,8 @@
-import { MyContext, TypeValue } from "@/app/utility/GlobalContext/MyContext";
-import {useContext,useEffect} from 'react'
+import { MyContext } from "@/app/utility/GlobalContext/MyContext";
+import {useContext} from 'react'
 import useFirstNextClick from "../../useFirstOnNextClick";
 import { usePathname } from "next/navigation";
+import { TypeValue } from "@/app/@types/MyContext";
 
 const stepsHome: any = (
   setInput: React.Dispatch<React.SetStateAction<string | number | undefined>>,
@@ -13,7 +14,7 @@ const stepsHome: any = (
    
 if(pathname === '/') return [
      { element: '#Terminal', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
-       setNextStep?.(prev => prev + 1);
+       setNextStep?.((prev:number) => prev + 1);
      }} },
      { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
        useFirstNextClick(setNextStep,setInput,"ls",contextCommand)

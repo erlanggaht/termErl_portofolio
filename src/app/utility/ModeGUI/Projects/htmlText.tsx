@@ -10,7 +10,7 @@ function HtmlTextProjectsGUI() {
         if(text === 'cat list command') setOpenProject?.(false)
         else setOpenProject?.(true)
         setHistoryInput?.(text)
-        setTotalCommand?.(prev => {
+        setTotalCommand?.((prev:string[]) => {
             return [...prev, text]
         })
     }
