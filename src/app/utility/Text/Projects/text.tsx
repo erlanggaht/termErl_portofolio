@@ -1,4 +1,4 @@
-import TypeTeks from "@/app/@types/typeText"
+import TypeTeks from "@/app/@types/text"
 import {htmllist_command_CatFile,htmllist_command_RunFile,htmllist_command_Other,html_ls_pwd } from "./htmlText"
 
 function Teks(): TypeTeks  {
