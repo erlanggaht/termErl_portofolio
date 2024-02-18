@@ -63,9 +63,9 @@ iframe.fade,
   @apply text-blue-600 
 }
 
-#driver-popover-content {
-  inset:auto auto 50% 70px !important;
-}
+/* #driver-popover-content {
+  inset: 500px auto auto 73% !important;
+} */
 
 
 
@@ -92,4 +92,7 @@ iframe.fade,
   #Shortcut {
     grid-area: 1;  
   }
+  /* #driver-popover-content {
+    inset: 80% 50px auto auto !important;
+  } */
 }

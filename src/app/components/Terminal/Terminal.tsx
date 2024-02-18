@@ -33,10 +33,10 @@ function Terminal({ children }: { children: React.ReactNode }) {
 
         <div className="flex justify-between  flex-auto ">
           <div>
-          <span className="inline-block -translate-y-[1px] cursor-pointer rounded-tl-md px-1 hover:bg-hoverBg">
+          <span className="md:inline-block hidden -translate-y-[1px] cursor-pointer rounded-tl-md px-1 hover:bg-hoverBg ">
             &#65291;
           </span>
-          <span className="inline-block -translate-y-[3px] text-xl opacity-30">
+          <span className="md:inline-block hidden -translate-y-[3px] text-xl opacity-30">
             &#x7C;
           </span>
           <span className="inline-block -translate-y-[2px] cursor-pointer rounded-tl-md px-1 hover:bg-hoverBg has-tooltip "  onClick={() => setSelectMode(true)}>
@@ -45,7 +45,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
           </span>
           </div>
           <div className="flex gap-6 font-bold mr-2">
-          <p className="-translate-y-[9px] hover:cursor-pointer  ">&#x1F5D5;</p>
+          <p className="-translate-y-[9px] hover:cursor-pointer translate-x-[10px] md:translate-x-[0px] ">&#x1F5D5;</p>
           <div className="w-[12px] h-[12px] border-2 translate-y-[5px] hover:cursor-pointer rounded-sm" onClick={() => fullScreenMode()}></div>
           <p className="cursor-pointer text-sm font-bold">&#x1F5D9;</p>
           </div>
@@ -57,7 +57,7 @@ function Terminal({ children }: { children: React.ReactNode }) {
       <iframe src={runProject.link} height={'100%'} width={'100%'}/> 
       </div> 
       :
-      <div className="md:h-[80vh] h-[50vh] overflow-auto  p-3">
+      <div className="lg:h-[75vh]  h-[55vh] overflow-auto  p-3">
         {children}
       </div>
       }

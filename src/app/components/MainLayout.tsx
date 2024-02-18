@@ -70,7 +70,7 @@ export default function MainLayout({
         selectMode &&
         <>
           <div className="absolute  top-0 bottom-0 left-0 right-0 w-full flex justify-center items-center  z-[500]">
-            <div id='TerminalSelectMode' className={`border border-darkness rounded-lg h-[320px] overflow-hidden  w-[420px] shadow bg-gradient-to-b from-body to-[#151515] z-[9999]`}>
+            <div id='TerminalSelectMode' className={`border border-darkness rounded-lg h-[320px] overflow-hidden  w-[420px] mx-4  shadow bg-gradient-to-b from-body to-[#151515] z-[9999]`}>
               <div className="bg-darkness-100 rounded-t-md relative">
                 <p className="absolute right-3 top-2 cursor-pointer hover:opacity-80" onClick={() => setModes(true)}>✕</p>
                 <span className="p-1 px-2 mt-1 ml-2  w-full rounded-t-md inline-block  ">

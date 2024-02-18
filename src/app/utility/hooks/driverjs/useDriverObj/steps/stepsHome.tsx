@@ -13,7 +13,7 @@ const stepsHome: any = (
 
    
 if(pathname === '/') return [
-     { element: '#Terminal', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "left", align: 'end', onNextClick: () => {
+     { element: '#Terminal', popover: { title: 'Hello, to use TermErl', description: 'this is the terminal section', side: "bottom", align: 'start', onNextClick: () => {
        setNextStep?.((prev:number) => prev + 1);
      }} },
      { element: '#TerminalContent:nth-child(1)', popover: { title: 'CLI', description: 'type "ls" to see the route list and route files', side: "left", align: 'end',onNextClick: () => {
