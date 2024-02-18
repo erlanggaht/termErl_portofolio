@@ -4,6 +4,7 @@ import validator from "validator";
 import "driver.js/dist/driver.css";
 import useDriverObj from "@/app/utility/hooks/driverjs/useDriverObj/useDriverObj";
 import { TypeValue } from "@/app/@types/MyContext";
+import useDetectMobileScreen from "@/app/utility/hooks/useDetectMobileScreen/useDetectMobileScreen";
 
 function Command({
   active = false,
@@ -90,6 +91,9 @@ const InputCommand = ({
   onKeydown?: (args1: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
 }) => {
+  const {detectScreenMobileJs} = useDetectMobileScreen()
+
+  console.log(detectScreenMobileJs)
   return (
     <input
       value={value}
@@ -97,7 +101,7 @@ const InputCommand = ({
       onKeyDown={onKeydown}
       disabled={disabled}
       className="bg-transparent px-1 font-thin focus:border-0 focus:outline-none w-[80%]"
-      autoFocus
+      autoFocus={detectScreenMobileJs ? false : true}
     />
   );
 };
