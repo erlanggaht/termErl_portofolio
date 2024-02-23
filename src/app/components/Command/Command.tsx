@@ -91,9 +91,7 @@ const InputCommand = ({
   onKeydown?: (args1: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
 }) => {
-  const {detectScreenMobileJs} = useDetectMobileScreen()
-
-  console.log(detectScreenMobileJs)
+  const {modeGUI} = useContext(MyContext)
   return (
     <input
       value={value}
@@ -101,7 +99,7 @@ const InputCommand = ({
       onKeyDown={onKeydown}
       disabled={disabled}
       className="bg-transparent px-1 font-thin focus:border-0 focus:outline-none w-[80%]"
-      autoFocus={detectScreenMobileJs ? false : true}
+      autoFocus={modeGUI ? false : true}
     />
   );
 };
